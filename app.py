@@ -118,28 +118,6 @@ if st.button('Recommend'):
     st.write("")
     st.write("")
 
-    # st.info("추천 결과!")
-    st.header(title + "과 가장 유사한 드라마는..?")
-    idx = 0
-    for i in range(0, 3):
-        cols = st.columns(3)
-        for col in cols:
-          try:
-            col.image(images[idx])
-          except:
-            col.image("./ott_image/img_falut.jpg")
-          col.subheader(titles[idx])
-          col.caption(synopsis[idx])
-
-          for idx_, ott in enumerate(return_dict[titles[idx]]):
-            if ott:
-              col.image("./logo/" + ott_idx[idx_] + ".png", width=50)
-          idx += 1
-
-    st.write("")
-    st.write("")
-    st.write("")
-
     st.title("OTT 가성비 비교")
     st.info("추천한 드라마를 모두 보는데 가장 가성비가 좋은 OTT를 알려드립니다. 아래 차트는 추천된 드라마가 있는 OTT를 보여줍니다.")
     # ott_data = [['seezn', ott_sum[0]], ['watcha', ott_sum[2]], ['wavve', ott_sum[3]], ['netflix', ott_sum[4]], ['tiving', ott_sum[5]]]
@@ -147,9 +125,14 @@ if st.button('Recommend'):
     # fig = px.bar(df, x='ott', y='frequency')
     # st.plotly_chart(fig)
 
+    st.write("")
+    st.write("")
+    st.write("")
+
     # plot
     COLOR = 'white'
     plt.rc('font', family='AppleGothic') # For MacOS
+    plt.rcParams.update({'font.size': 22})
     plt.rcParams['axes.labelcolor'] = COLOR
     # plt.rcParams['text.color'] = COLOR
     plt.rcParams['xtick.color'] = COLOR
@@ -182,7 +165,30 @@ if st.button('Recommend'):
     st.caption("Netflix - " + str(ott_dict['netflix']) + "원 / 1 drama")
     st.caption("Tving - " + str(ott_dict['tiving']) + "원 / 1 drama")
     st.subheader("추천된 영화를 모두 보기에 가성비가 가장 좋은 OTT 는 \"" + ott_idx[ott_dict['vest_choice']] + "\" 입니다.")
+
     st.write("")
     st.write("")
     st.write("")
     st.warning('Seezn : 월 9000원, Watcha : 월 7900원, Wavve : 월 7900원, Netflix : 월 9500원, Tving : 월 7900원을 기준으로 계산되었습니다.', icon="⚠️")
+
+    st.write("")
+    st.write("")
+    st.write("")
+
+    # st.info("추천 결과!")
+    st.header(title + "과 가장 유사한 드라마는..?")
+    idx = 0
+    for i in range(0, 3):
+        cols = st.columns(3)
+        for col in cols:
+          try:
+            col.image(images[idx])
+          except:
+            col.image("./ott_image/img_falut.jpg")
+          col.subheader(titles[idx])
+          col.caption(synopsis[idx])
+
+          for idx_, ott in enumerate(return_dict[titles[idx]]):
+            if ott:
+              col.image("./logo/" + ott_idx[idx_] + ".png", width=50)
+          idx += 1
